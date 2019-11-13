@@ -5,6 +5,7 @@ The syllabus for each level is mentioned below:
 1 . Basic Data Structures: Arrays, Strings, Stacks, Queues 
 
 2 . Asymptotic analysis (Big-O notation)
+https://discuss.codechef.com/t/multiple-choice-questions-related-to-testing-knowledge-about-time-and-space-complexity-of-a-program/17976 ✓
 
 3 . Basic math operations (addition, subtraction, multiplication, division, exponentiation)
 
