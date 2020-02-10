@@ -1,0 +1,95 @@
+public class MyClass {
+    static final int capacity = 100;
+    public int top;
+    
+    int arr[] = new int[100];
+    
+    MyClass(){
+        top = -1;
+    }
+    
+    boolean isEmpty(){
+        if(top<0){
+            System.out.println("Stack Underflow");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    void push(int n){
+       if(top == capacity-1){
+           System.out.println("Stack Overflow");
+       } 
+       else{
+           arr[++top] = n;
+           System.out.println(n+" inserted in stack");
+       }
+    }
+    
+    int pop(){
+        if(isEmpty()){
+           return 0;
+        }
+        else{
+            System.out.println(arr[top]+" is poped");
+            return arr[top--];
+        }
+    }
+    
+    int peek(){
+        if(top < 0){
+		System.out.println("Stack Underflow");
+		return 0;
+		}
+		else
+		return arr[top];
+    }
+    
+    int getTop(){
+        return top;
+    }
+    
+    void show(){
+        for(int i=0;i<=top;i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
+    
+    public static void main(String args[]) {
+      MyClass stack = new MyClass();
+      System.out.println(stack.isEmpty());
+	stack.push(10);
+	stack.push(20);
+	stack.push(30);
+	stack.push(40);
+	stack.show();
+	stack.getTop();
+	System.out.println(stack.pop());
+	System.out.println(stack.peek());
+	System.out.println(stack.pop());
+	System.out.println(stack.pop());
+	System.out.println(stack.pop());
+	stack.pop();
+    }
+}
+
+-------------
+Output : 
+Stack Underflow
+true
+10 inserted in stack
+20 inserted in stack
+30 inserted in stack
+40 inserted in stack
+10 20 30 40 40 is poped
+40
+30
+30 is poped
+30
+20 is poped
+20
+10 is poped
+10
+Stack Underflow
