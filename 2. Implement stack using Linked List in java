@@ -1,0 +1,110 @@
+class Node{
+    int data;
+    Node next;
+}
+
+class LinkedList {
+    Node top,head;
+    int count = 0;
+    
+    public void push(int n){
+        Node node = new Node();
+        node.data = n;
+        node.next = null;
+        
+        if(head == null){
+            head = node;
+            top = node;
+            count++;
+        }
+        else{
+            Node nextNode = head;
+            
+            while(nextNode.next != null){
+                nextNode = nextNode.next;
+            }
+            nextNode.next = node;
+            top = nextNode.next;
+            count++;
+        }
+    }
+    
+    public boolean isEmpty(){
+        if(head == null){
+            System.out.println("Stack Underflow");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public int pop(){
+        if(isEmpty()){
+            return 0;
+        }
+        else if(head != top){
+            Node nextNode = head;
+            Node n1 = nextNode.next;
+            while(n1.next != null){
+                nextNode = nextNode.next;
+                n1 = n1.next;
+            }
+            int returnData = n1.data;
+            nextNode.next = null;
+            top = nextNode;
+            count--;
+            return returnData;
+        }
+        else{
+            count--;
+            int returnData = head.data;
+            head = null;
+            top = null;
+            return returnData;
+        }
+    }
+    public void show(){
+        if(isEmpty()){
+            System.out.println("Stack is empty");
+        }
+        else{
+            Node nextNode = head;
+            while(nextNode.next != null){
+                System.out.print(nextNode.data+" ");
+                nextNode = nextNode.next;
+            }
+            System.out.print(nextNode.data);
+        }
+    }
+    
+    public int getTop(){
+        return count;
+    }
+    public int getTopElement(){
+        return top.data;
+    }
+    
+}
+
+public class Runner{
+    public static void main(String[] args){
+        LinkedList ls = new LinkedList();
+        ls.push(10);
+    ls.push(20);
+    ls.push(30);
+    ls.push(40);
+    System.out.println(ls.getTop());
+    ls.show();
+    System.out.println(ls.pop());
+    ls.show();
+    ls.pop();
+    ls.pop();
+    ls.show();
+    ls.pop();
+    ls.pop();
+    ls.push(5);
+    ls.push(25);
+    System.out.println(ls.getTopElement());
+    System.out.println(ls.getTop());
+    }
+}
