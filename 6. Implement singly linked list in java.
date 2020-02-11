@@ -1,0 +1,118 @@
+class Node{
+    int data;
+    Node next;
+}
+class LinkedList {
+    Node head;
+    int count=0;
+    
+    public void insert(int n){
+        Node node = new Node();
+        node.data = n;
+        node.next = null;
+        if(head == null){
+            head = node;
+        }
+        else{
+            Node nextNode = head;
+            while(nextNode.next != null){
+                nextNode = nextNode.next;
+            }
+            nextNode.next = node;
+        }
+        count++;
+    }
+    
+    public void show(){
+        Node nextNode = head;
+        while(nextNode.next != null){
+            System.out.print(nextNode.data+" ");
+            nextNode = nextNode.next;
+        }
+        System.out.print(nextNode.data);
+    }
+    
+    public int countNodes(){
+        return count;
+    }
+    
+    public void insertAtStart(int n){
+        Node node = new Node();
+        node.data = n;
+        node.next = null;
+        
+        if(head == null){
+            head = node;
+        }
+        else{
+            node.next = head;
+            head = node;
+        }
+        count++;
+    }
+    
+    public void insertAt(int index, int n){
+        Node node = new Node();
+        node.data = n;
+        node.next = null;
+        if(index >= count){
+        System.out.println("Index is out of range");
+        }
+        else if(index == 0){
+            insertAtStart(n);
+        }
+        else{
+            
+            Node nextNode = head;
+            for(int i=0;i<index-1;i++){
+            nextNode = nextNode.next;
+            }
+            node.next = nextNode.next;
+            nextNode.next = node;
+            count++;
+        }
+        
+    }
+    
+    public void deleteAt(int index){
+        if(head == null){
+            System.out.println("List has no elemnets");
+        }
+        else{
+            Node nextNode = head;
+            for(int i=0;i<index-1;i++){
+                nextNode = nextNode.next;
+            }
+            Node temp = nextNode.next;
+            nextNode.next = temp.next;
+            temp = null;
+            count--;
+        }
+    }
+    
+}
+
+public class Runner{
+    public static void main(String[] args){
+        LinkedList l = new LinkedList();
+        l.insert(10);
+    l.insert(20);
+    l.insert(30);
+    l.insert(50);
+    l.insert(60);
+    l.insertAtStart(70);
+    l.insertAtStart(7);
+    l.insertAt(2,42);
+    l.insertAt(0,52);
+    System.out.println(l.countNodes());
+    l.show();
+    System.out.println();
+    l.deleteAt(2);
+    l.show();
+    }
+}
+-------
+output: 
+9
+52 7 70 42 10 20 30 50 60
+52 7 42 10 20 30 50 60
