@@ -1,0 +1,117 @@
+public class MyClass {
+    static final int capacity = 100;
+    public int top;
+    
+    int arr[] = new int[100];
+    
+    MyClass(){
+        top = -1;
+    }
+    
+    boolean isEmpty(){
+        if(top<0){
+            System.out.println("Stack Underflow");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    void push(int n){
+       if(top == capacity-1){
+           System.out.println("Stack Overflow");
+       } 
+       else{
+           arr[++top] = n;
+           System.out.println(n+" inserted in stack");
+       }
+    }
+    
+    int pop(){
+        if(isEmpty()){
+           return 0;
+        }
+        else{
+            System.out.println(arr[top]+" is poped");
+            return arr[top--];
+        }
+    }
+    
+    int peek(){
+        if(top < 0){
+		System.out.println("Stack Underflow");
+		return 0;
+		}
+		else
+		return arr[top];
+    }
+    
+    int getTop(){
+        return top;
+    }
+    
+    void show(){
+        for(int i=0;i<=top;i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
+    
+    public static void main(String args[]) {
+      MyClass stack1 = new MyClass();
+    stack1.push(4);
+    stack1.push(2);
+    stack1.push(3);
+    stack1.push(1);
+    MyClass stack2 = new MyClass();
+    int temp = 0;
+    while(!stack1.isEmpty()){
+        temp = stack1.pop();
+        while(!stack2.isEmpty() && stack2.peek()<temp){
+            stack1.push(stack2.pop());
+        }
+        stack2.push(temp);
+    }
+    
+    stack2.show();
+    }
+}
+--------
+output: 
+4 inserted in stack
+2 inserted in stack
+3 inserted in stack
+1 inserted in stack
+1 is poped
+Stack Underflow
+1 inserted in stack
+3 is poped
+1 is poped
+1 inserted in stack
+Stack Underflow
+3 inserted in stack
+1 is poped
+1 inserted in stack
+2 is poped
+1 is poped
+1 inserted in stack
+2 inserted in stack
+1 is poped
+1 inserted in stack
+4 is poped
+1 is poped
+1 inserted in stack
+2 is poped
+2 inserted in stack
+3 is poped
+3 inserted in stack
+Stack Underflow
+4 inserted in stack
+3 is poped
+3 inserted in stack
+2 is poped
+2 inserted in stack
+1 is poped
+1 inserted in stack
+Stack Underflow
+4 3 2 1 
