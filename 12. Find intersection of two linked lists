@@ -1,0 +1,181 @@
+class Node{
+    int data;
+    Node next;
+}
+class LinkedList {
+    Node head;
+    int count=0;
+    
+    public void insert(int n){
+        Node node = new Node();
+        node.data = n;
+        node.next = null;
+        if(head == null){
+            head = node;
+        }
+        else{
+            Node nextNode = head;
+            while(nextNode.next != null){
+                nextNode = nextNode.next;
+            }
+            nextNode.next = node;
+        }
+        count++;
+    }
+    
+    public void show(){
+        Node nextNode = head;
+        while(nextNode.next != null){
+            System.out.print(nextNode.data+" ");
+            nextNode = nextNode.next;
+        }
+        System.out.print(nextNode.data);
+    }
+    
+    public int countNodes(){
+        return count;
+    }
+    
+    public void insertAtStart(int n){
+        Node node = new Node();
+        node.data = n;
+        node.next = null;
+        
+        if(head == null){
+            head = node;
+        }
+        else{
+            node.next = head;
+            head = node;
+        }
+        count++;
+    }
+    
+    public void insertAt(int index, int n){
+        Node node = new Node();
+        node.data = n;
+        node.next = null;
+        if(index >= count){
+        System.out.println("Index is out of range");
+        }
+        else if(index == 0){
+            insertAtStart(n);
+        }
+        else{
+            
+            Node nextNode = head;
+            for(int i=0;i<index-1;i++){
+            nextNode = nextNode.next;
+            }
+            node.next = nextNode.next;
+            nextNode.next = node;
+            count++;
+        }
+        
+    }
+    
+    public void deleteAt(int index){
+        if(head == null){
+            System.out.println("List has no elemnets");
+        }
+        else{
+            Node nextNode = head;
+            for(int i=0;i<index-1;i++){
+                nextNode = nextNode.next;
+            }
+            Node temp = nextNode.next;
+            nextNode.next = temp.next;
+            temp = null;
+            count--;
+        }
+    }
+    
+    public void reverse(){
+        head = reverseFunction(head);
+        System.out.println(head.data);
+    }
+    
+    private Node reverseFunction(Node node){   // Recursive
+        if(node == null || node.next == null){
+            return node;
+        }
+        Node temp = reverseFunction(node.next);
+        node.next.next = node;
+        node.next = null;
+        return temp;
+    }
+    
+    public void checkIntersect(LinkedList l1, LinkedList l2){
+        Node n = intersect(l1.head, l2.head);
+        if(n == null){
+            System.out.println("LinkedList doesn't intersect");
+        }
+        else{
+            System.out.println("LinkedList intersect at "+n.data);
+        }
+    }
+    
+    public Node intersect(Node n1, Node n2){
+        int l1 = length(n1);
+        int l2 = length(n2);
+        Node n;
+        int l = Math.abs(l1-l2);
+        if(l1>=l2){
+            for(int i=0;i<l;i++){
+                n1 = n1.next;
+            }
+        }
+        else{
+            for(int i=0;i<l;i++){
+                n2 = n2.next;
+            }
+        }
+        while(n1 != null && n1.data != n2.data ){
+            n1 = n1.next;
+            n2 = n2.next;
+        }
+        if(n1 != null && n1.data == n2.data){
+            return n1;
+        }
+        return null;
+    }
+    
+    public int length(Node head){
+        int l = 0;
+        while(head != null){
+            head = head.next;
+            l++;
+        }
+        return l;
+    }
+    
+}
+
+public class Runner{
+    public static void main(String[] args){
+        LinkedList l1 = new LinkedList();
+        l1.insert(1);
+    l1.insert(2);
+    l1.insert(3);
+    l1.insert(4);
+    l1.insert(5);
+    l1.insert(6);
+    l1.insert(7);
+    System.out.println(l1.countNodes());
+    l1.show();
+    LinkedList l2 = new LinkedList();
+    l2.insert(3);
+    l2.insert(4);
+    l2.insert(5);
+    l2.insert(6);
+    l2.insert(7);
+    System.out.println();
+    l2.show();
+    l2.checkIntersect(l2,l1);
+    }
+}
+--------
+7
+1 2 3 4 5 6 7
+3 4 5 6 7
+LinkedList intersect at 3
