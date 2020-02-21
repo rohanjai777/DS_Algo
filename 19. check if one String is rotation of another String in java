@@ -1,0 +1,21 @@
+class CheckRotation{
+    public boolean check(String original, String rotated){
+        String s = original.concat(original);
+        if(s.contains(rotated)){
+            System.out.println("Yes its the rotation");
+            return true;
+        }
+        System.out.println("No its not the rotation");
+        return false;
+    }
+}
+public class Runner{
+    public static void main(String[] args){
+        CheckRotation c  = new CheckRotation();
+        System.out.println(c.check("rohan","hanro"));
+    }
+}
+------
+Output:
+Yes its the rotation
+true
