@@ -1,0 +1,37 @@
+import java.util.*;
+
+class Unique{
+    public void isUnique(String s){
+        char c[] = s.toCharArray();
+        Map<Character,Integer> map = new LinkedHashMap<>();
+        
+        for(int i=0;i<c.length;i++){
+            if(map.containsKey(c[i]) == false){
+                map.put(c[i],1);
+            }
+            else{
+                int oldval = map.get(c[i]);
+                int newval = oldval+1;
+                map.put(c[i],newval);
+            }
+        }
+        
+        Set<Map.Entry<Character,Integer>> lmap = map.entrySet();
+        for(Map.Entry<Character,Integer> data: lmap){
+            if(data.getValue() == 1){
+                System.out.println(data.getKey()+" "+data.getValue());
+                break;
+            }
+        }
+    }
+}
+
+public class Runner{
+    public static void main(String [] args){
+        Unique u = new Unique();
+        u.isUnique("easiest");
+    }
+}
+----
+Output:
+a 1
