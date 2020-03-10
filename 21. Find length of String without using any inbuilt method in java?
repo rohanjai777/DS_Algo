@@ -1,0 +1,18 @@
+class Str{
+    public void lengthString(String s){
+        int i=0;
+        for(char c : s.toCharArray()){
+            i++;
+        }
+        System.out.println("length of string without length() is "+i);
+    }
+}
+public class Runner{
+    public static void main(String[] args){
+        Str s = new Str();
+        s.lengthString("rohan arora");
+    }
+}
+-----
+Output: 
+length of string without length() is 11
