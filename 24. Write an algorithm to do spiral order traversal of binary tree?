@@ -64,3 +64,6 @@ public class SpiralOrder{
     
     
 }
+------------
+Output:
+40 30 20 10 15 20
