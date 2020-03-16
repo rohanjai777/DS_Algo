@@ -1,0 +1,58 @@
+// Print in one line
+
+import java.util.Queue;
+import java.util.LinkedList;
+class Node{
+        int data;
+        Node left;
+        Node right;
+        Node(int data){
+            this.data = data;
+        }
+    }
+public class LevelOrder{
+    public void checkOrder(Node root){
+        Queue<Node> q = new LinkedList<Node>();
+        q.add(root);
+        while(!q.isEmpty()){
+            Node n = q.poll();
+            System.out.print(n.data+" ");
+            if(n.left != null){
+                q.add(n.left);
+            }
+            if(n.right != null){
+                q.add(n.right);
+            }
+        }
+    }
+    
+    public Node tree(){
+        Node root = new Node(40);
+        Node n1 = new Node(20);
+        Node n2 = new Node(30);
+        Node n3 = new Node(10);
+        Node n4 = new Node(15);
+        Node n5 = new Node(20);
+        
+        root.left = n1;
+        root.right = n2;
+        
+        n1.left = n3;
+        n1.right = n4;
+        
+        n2.right = n5;
+        
+        return root;
+    }
+    
+    public static void main(String[] args){
+        LevelOrder l = new LevelOrder();
+        Node n = l.tree();
+        l.checkOrder(n);
+    }
+    
+    
+}
+---------
+Output:
+40 20 30 10 15 20 
