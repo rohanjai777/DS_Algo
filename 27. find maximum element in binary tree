@@ -1,0 +1,58 @@
+
+class Node{
+        int data;
+        Node left;
+        Node right;
+        Node(int data){
+            this.data = data;
+        }
+    }
+    
+public class SpiralOrder{
+    
+    int max=Integer.MIN_VALUE; int min = Integer.MAX_VALUE;
+    
+    public void checkValue(Node nextNode){
+        if(nextNode != null){
+            if(max<nextNode.data){
+                max = nextNode.data;
+            }
+            if(min>nextNode.data){
+                min = nextNode.data;
+            }
+            checkValue(nextNode.left);
+            checkValue(nextNode.right);
+        }
+    }
+    
+    public Node tree(){
+        Node root = new Node(40);
+        Node n1 = new Node(25);
+        Node n2 = new Node(30);
+        Node n3 = new Node(10);
+        Node n4 = new Node(15);
+        Node n5 = new Node(20);
+        
+        root.left = n1;
+        root.right = n2;
+        
+        n1.left = n3;
+        n1.right = n4;
+        
+        n2.right = n5;
+        
+        return root;
+    }
+    
+    public static void main(String[] args){
+        SpiralOrder l = new SpiralOrder();
+        Node n = l.tree();
+        l.checkValue(n);
+        System.out.println("min max is "+l.min+" "+l.max);
+    }
+    
+    
+}
+---------
+Output:
+min max is 10 40
