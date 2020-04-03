@@ -1,0 +1,80 @@
+class Node{
+        int data;
+        Node left;
+        Node right;
+        Node(int data){
+            this.data = data;
+        }
+    }
+    
+public class T{
+    public void boundary(Node root){
+        left(root);
+        right(root.right);
+        leaf(root);
+        
+    }
+    
+    public void left(Node root){
+        if(root != null){
+            if(root.left != null){
+              System.out.print(root.data+" ");
+              left(root.left);
+            }
+            else if(root.right != null){
+                System.out.print(root.data+" ");
+                left(root.right);
+            }
+        }    
+    }
+    
+    public void right(Node root){
+        if(root != null){
+            if(root.right != null){
+              System.out.print(root.data+" ");
+              left(root.right);
+            }
+            else if(root.left != null){
+                System.out.print(root.data+" ");
+                left(root.left);
+            }
+        }  
+    }
+    
+    public void leaf(Node root){
+        if(root != null){
+            leaf(root.left);
+            if(root.left == null && root.right ==null){
+                System.out.print(root.data+" ");
+            }
+            leaf(root.right);
+        }
+    }
+    public Node tree(){
+        Node root = new Node(40);
+        Node n1 = new Node(25);
+        Node n2 = new Node(30);
+        Node n3 = new Node(10);
+        Node n4 = new Node(15);
+        Node n5 = new Node(20);
+        
+        root.left = n1;
+        root.right = n2;
+        
+        n1.left = n3;
+        n1.right = n4;
+        
+        n2.right = n5;
+        
+        return root;
+    }
+    
+    public static void main(String[] args){
+        T t = new T();
+        t.boundary(t.tree());
+    }
+    
+}
+-----------
+Output:
+40 25 30 10 15 20 
