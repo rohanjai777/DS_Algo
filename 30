@@ -1,0 +1,77 @@
+import java.util.*;
+class Node{
+        int data;
+        Node left;
+        Node right;
+        Node(int data){
+            this.data = data;
+        }
+    }
+    
+public class T{
+    public void levelOrder(Node root){
+        Queue<Node> q = new LinkedList<Node>();
+        Map<Integer,Integer> map = new TreeMap();
+        q.add(root);
+        int h = 0;
+        int l,r;
+        while(!q.isEmpty()){
+            l = hd;
+            
+            Node n = q.poll();
+            if(n.left != null){
+                q.add(n.left);
+                l = hd-1;
+            }
+            if(n.right != null){
+                q.add(n.right);
+                r = hd+1;
+            }
+            
+            if(map.containsKey(hd) == false){
+                map.put(hd,n.data);
+            }
+            else{
+                int oldVal = map.get(hd);
+                int newVal = oldVal+n.data;
+                map.put(hd, newVal);
+            }
+    }
+    Set<Map.Entry<Integer,Integer>> tmap = map.entrySet();
+    for(Map.Entry<Integer,Integer>data: tmap){
+        System.out.println(data.getKey());
+        System.out.println(data.getValue());
+    }
+}
+    public static Node createBinaryTree()
+	{
+ 
+		Node rootNode =new Node(40);
+		Node node20=new Node(20);
+		Node node10=new Node(10);
+		Node node30=new Node(30);
+		Node node60=new Node(60);
+		Node node50=new Node(50);
+		Node node70=new Node(70);
+		Node node55=new Node(55);
+		Node node5=new Node(5);
+ 
+		rootNode.left=node20;
+		rootNode.right=node60;
+ 
+		node20.left=node10;
+		node20.right=node30;
+ 
+		node60.left=node50;
+		node60.right=node70;
+		node50.right=node55;
+		node30.left=node5;
+		return rootNode;
+	}
+    
+    public static void main(String[] args){
+        T t = new T();
+        t.levelOrder(createBinaryTree());
+    }
+    
+}
